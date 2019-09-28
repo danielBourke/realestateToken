@@ -5,3 +5,16 @@
 
     
 // Test verification with incorrect proof
+
+
+
+contract("Verify square", accounts => {
+    const owner = accounts[0];
+    beforeEach(() => {
+        this.contract = await Verifier.new({from: owner});
+            
+    })
+    describe("Verify Zokarites", () => {
+        it("adds a solution")
+    })
+})
