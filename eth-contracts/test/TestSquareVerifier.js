@@ -27,12 +27,13 @@ const False_Verified = {
 
 contract("Verify square", accounts => {
     const owner = accounts[0];
-    beforeEach(() => {
-        this.contract = await Verifier.new({from: owner});
-            
-    })
+
     describe("Verify Zokarites", () => {
-        it("adds a solution", async function () {
+
+        it("adds a solution", async function (){
+            const instance = await
+        })
+        it("mints a token", async function () {
             const verify = await this.contract.verifyTx(Verified.proof.a, Verified.proof.b, Verified.proof.c, Verified.inputs);
             assert.equal(verify.logs[0].event, "Verified", "is not verified")
         })
