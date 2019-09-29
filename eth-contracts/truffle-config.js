@@ -61,7 +61,7 @@ module.exports = {
     // Useful for deploying to a public network.
     // NB: It's important to wrap the provider as a function.
      rinkeby: {
-       provider: () => new HDWalletProvider("prefer struggle bring razor mask sound pool slice harsh caution series soft", `https://rinkeby.infura.io/v3/d35207ad7939496d863021923403c58e`),
+       provider: () => new HDWalletProvider(process.env.mnemonic, `https://rinkeby.infura.io/v3/${process.env.INFURA_KEY}`),
        network_id: 4, 
        gas:  6e6,
        gasPrice: 2e9,      // Ropsten's id
@@ -87,8 +87,8 @@ module.exports = {
   // Configure your compilers
   compilers: {
     solc: {
-       version: "0.5.8",    // Fetch exact version from solc-bin (default: truffle's version)
-       docker: true,        // Use "0.5.1" you've installed locally with docker (default: false)
+       version: "0.5.2",    // Fetch exact version from solc-bin (default: truffle's version)
+       //docker: true,        // Use "0.5.1" you've installed locally with docker (default: false)
        settings: {          // See the solidity docs for advice about optimization and evmVersion
         optimizer: {
           enabled: false,
