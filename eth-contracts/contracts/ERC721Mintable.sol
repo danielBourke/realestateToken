@@ -7,25 +7,19 @@ import 'openzeppelin-solidity/contracts/ownership/Ownable.sol';
 import 'openzeppelin-solidity/contracts/token/ERC721/IERC721Receiver.sol';
 import "./Oraclize.sol";
 
-contract ownable {
+
     
     //  1) create a private '_owner' variable of type address with a public getter function
 
-    address private _owner;
+ 
     
     //  2) create an internal constructor that sets the _owner var to the creater of the contract 
 
-    constructor() internal{
-        _owner = msg.sender;
-       
-    }
+
     //  TODO's
     //  3) create an 'onlyOwner' modifier that throws if called by any account other than the owner.
    
-   modifier onlyOwner(){
-       require(msg.sender == _owner, "Only the owner can call this");
-       _;
-   }
+
     //  4) fill out the transferOwnership function
     //  5) create an event that emits anytime ownerShip is transfered (including in the constructor)
 
@@ -33,17 +27,10 @@ contract ownable {
 
 
 
-    function transferOwnership(address newOwner) public onlyOwner {
-        require(newOwner == tx.origin);
-        _owner == newOwner;
 
 
-        // TODO add functionality to transfer control of the contract to a newOwner.
-        // make sure the new owner is a real address
 
-    }
-}
-
+    
 
 //  TODO's: Create a Pausable contract that inherits from the Ownable contract
 //  1) create a private '_paused' variable of type bool
@@ -53,11 +40,13 @@ contract ownable {
 //  5) create a Paused & Unpaused event that emits the address that triggered the event
 
 contract Pausable is Ownable {
+    address private _owner;
     bool private _paused;
 
     constructor() internal
     {
         _paused = false;
+        _owner = msg.sender;
     }
     event Paused(address pauser);
     event Unpaused(address pauser);
@@ -65,6 +54,10 @@ contract Pausable is Ownable {
         require(_paused == true, "The contract is not paused");
         _;
     }
+       modifier onlyOwner(){
+       require(msg.sender == _owner, "Only the owner can call this");
+       _;
+   }
 
     modifier paused() {
         require(_paused == false, "The contract is paused");
@@ -78,6 +71,15 @@ contract Pausable is Ownable {
             emit Paused(msg.sender);
         else
             emit Unpaused(msg.sender);
+    }
+        function transferOwnership(address newOwner) public onlyOwner {
+        require(newOwner == tx.origin);
+        _owner == newOwner;
+
+
+        // TODO add functionality to transfer control of the contract to a newOwner.
+        // make sure the new owner is a real address
+
     }
 
 }
