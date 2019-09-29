@@ -5,6 +5,10 @@ The capstone will build upon the knowledge you have gained in the course in orde
 # This project uses open Sea 
 https://rinkeby.opensea.io/account?tab=activity
 
+# Test
+
+use the commands truffle develop to run a local simulation of an etherium network. The run the test files to test each cxontract.
+
 
 # Project Resources
 
